@@ -19,6 +19,7 @@ fn main() {
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .clang_args(["-x", "c++", "-std=c++14"])
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.
