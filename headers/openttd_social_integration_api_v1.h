@@ -33,16 +33,12 @@
 #ifndef OPENTTD_SOCIAL_INTEGRATION_API_V1_H
 #define OPENTTD_SOCIAL_INTEGRATION_API_V1_H
 
-#define bool char
-#define true 1
-#define false 0
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /** Pointers supplied by the plugin for OpenTTD to use. */
-typedef struct {
+struct OpenTTD_SocialIntegration_v1_PluginInfo {
 	/**
 	 * The Social Platform this plugin is for.
 	 *
@@ -63,10 +59,10 @@ typedef struct {
 
 	const char *name; ///< Full name of the plugin. UTF-8, nul-terminated. The plugin is and remains the owner of the memory.
 	const char *version; ///< Version of the plugin. UTF-8, nul-terminated. The plugin is and remains the owner of the memory.
-} OpenTTD_SocialIntegration_v1_PluginInfo;
+};
 
 /** Pointers supplied by the plugin for OpenTTD to use. */
-typedef struct {
+struct OpenTTD_SocialIntegration_v1_PluginApi {
 	/**
 	 * OpenTTD tells the plugin to shut down.
 	 *
@@ -118,12 +114,12 @@ typedef struct {
 	 * This is followed by event_enter_multiplayer() if the join was successful.
 	 */
 	void (*event_joining_multiplayer)();
-} OpenTTD_SocialIntegration_v1_PluginApi;
+};
 
 /** Pointers supplied by OpenTTD, for the plugin to use. */
-typedef struct {
+struct OpenTTD_SocialIntegration_v1_OpenTTDInfo {
 	const char *openttd_version; ///< Version of OpenTTD. UTF-8, nul-terminated. OpenTTD is and remains the owner of the memory.
-} OpenTTD_SocialIntegration_v1_OpenTTDInfo;
+};
 
 /** The result of the initialization. */
 enum OpenTTD_SocialIntegration_v1_InitResult : int {
@@ -142,7 +138,7 @@ enum OpenTTD_SocialIntegration_v1_InitResult : int {
  * @param[in]  openttd_info  Structure that OpenTTD filled with pointers. All pointers will remain valid until shutdown(). OpenTTD is owner of the memory.
  * @return                   The status of the initialization.
  */
-typedef enum OpenTTD_SocialIntegration_v1_InitResult (*OpenTTD_SocialIntegration_v1_Init)(OpenTTD_SocialIntegration_v1_PluginApi *plugin_api, const OpenTTD_SocialIntegration_v1_OpenTTDInfo *openttd_info);
+typedef OpenTTD_SocialIntegration_v1_InitResult (*OpenTTD_SocialIntegration_v1_Init)(OpenTTD_SocialIntegration_v1_PluginApi *plugin_api, const OpenTTD_SocialIntegration_v1_OpenTTDInfo *openttd_info);
 
 /**
  * Type of the GetInfo function the plugin is expected to export from its dynamic library.
