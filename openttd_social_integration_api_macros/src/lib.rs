@@ -27,6 +27,7 @@ impl Attributes {
     }
 }
 
+/// Decorates the entrypoint function of a plugin.
 /// # Usage
 /// This attribute has following 3 argument: platform, name and version.
 /// ## Platform
@@ -38,10 +39,19 @@ impl Attributes {
 ///  Please use names from that list, including capitalization.
 /// 
 /// If you create a plugin for a new Social Platform, please add it to the wiki page.
+/// 
+/// ## Return value for the function
+/// Returning `Ok(Some(...))` means the plugin initialized successfully.
+/// 
+/// Returning `Ok(None)` means the Social Platform is not running.
+/// 
+/// Returning `Err(())` means the plugin failed to initialize (generic error).
 /// # Examples
-/// ```
+/// ```no_run
+/// use openttd_social_integration_api::{PluginApi, OpenTTDInfo};
+/// 
 /// #[openttd_social_integration_api_macros::init(platform = "test", name = "Test Plugin", version = "0.1")]
-/// pub fn main(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
+/// pub fn init(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
 ///     Ok(Some(PluginApi {
 ///         shutdown: None,
 ///         run_callbacks: None,

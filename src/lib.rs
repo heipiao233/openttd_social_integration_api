@@ -3,7 +3,7 @@
 //! Use [`openttd_social_integration_api_macros::init`] for entrypoint.
 //! 
 //! # Examples
-//! ```
+//! ```no_run
 //! use openttd_social_integration_api::{OpenTTDInfo, PluginApi};
 //! 
 //! fn shutdown() {
@@ -36,7 +36,7 @@
 //! }
 //! 
 //! #[openttd_social_integration_api_macros::init(platform = "test", name = "Test Plugin", version = "0.1")]
-//! pub fn main(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
+//! pub fn init(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
 //!     println!("Init for OpenTTD {}", info.openttd_version);
 //!     Ok(Some(PluginApi {
 //!         shutdown: Some(shutdown),

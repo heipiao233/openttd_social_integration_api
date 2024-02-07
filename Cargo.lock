@@ -186,6 +186,7 @@ dependencies = [
 name = "openttd_social_integration_api_macros"
 version = "0.1.0"
 dependencies = [
+ "openttd_social_integration_api",
  "quote",
  "syn",
 ]

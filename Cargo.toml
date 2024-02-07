@@ -9,5 +9,5 @@ edition = "2021"
 [build-dependencies]
 bindgen = "0.69.4"
 
-[dependencies]
-openttd_social_integration_api_macros = { version = "0.1.0", path = "openttd_social_integration_api_macros" }
+[dev-dependencies]
+openttd_social_integration_api_macros = { path = "openttd_social_integration_api_macros" }
