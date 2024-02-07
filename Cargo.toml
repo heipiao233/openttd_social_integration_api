@@ -1,7 +1,7 @@
 workspace = { members = ["openttd_social_integration_api_macros"] }
 [package]
 name = "openttd_social_integration_api"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Hei Piao"]
 description = "Unofficial Rust binding for OpenTTD Social Integration API."
 license = "MIT"
@@ -12,5 +12,5 @@ edition = "2021"
 [build-dependencies]
 bindgen = "0.69.4"
 
-[dev-dependencies]
-openttd_social_integration_api_macros = { path = "openttd_social_integration_api_macros" }
+[dependencies]
+openttd_social_integration_api_macros = "0.1.0"

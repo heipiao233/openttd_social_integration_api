@@ -53,6 +53,8 @@
 
 pub mod raw_api;
 
+pub use openttd_social_integration_api_macros::init;
+
 use std::ffi::CStr;
 
 use crate::raw_api::{
