@@ -6,7 +6,7 @@ use syn::{meta::ParseNestedMeta, parse_macro_input, Error, ItemFn, LitStr, Resul
 struct Attributes {
     social_platform: Option<LitStr>,
     name: Option<LitStr>,
-    version: Option<LitStr>
+    version: Option<LitStr>,
 }
 
 impl Attributes {
@@ -23,7 +23,6 @@ impl Attributes {
         } else {
             Err(meta.error("Unsupported property"))
         }
-
     }
 }
 
@@ -32,24 +31,24 @@ impl Attributes {
 /// This attribute has following 3 argument: platform, name and version.
 /// ## Platform
 /// The Social Platform this plugin is for.
-/// 
+///
 /// As there can only be one plugin active for each Social Platform, this value is used to determine which plugin to use.
-/// 
+///
 /// A complete list of names can be found here: <https://wiki.openttd.org/en/Development/Social%20Integration>
 ///  Please use names from that list, including capitalization.
-/// 
+///
 /// If you create a plugin for a new Social Platform, please add it to the wiki page.
-/// 
+///
 /// ## Return value for the function
 /// Returning `Ok(Some(...))` means the plugin initialized successfully.
-/// 
+///
 /// Returning `Ok(None)` means the Social Platform is not running.
-/// 
+///
 /// Returning `Err(())` means the plugin failed to initialize (generic error).
 /// # Examples
 /// ```no_run
 /// use openttd_social_integration_api::{PluginApi, OpenTTDInfo};
-/// 
+///
 /// #[openttd_social_integration_api_macros::init(platform = "test", name = "Test Plugin", version = "0.1")]
 /// pub fn init(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
 ///     Ok(Some(PluginApi {
@@ -71,7 +70,15 @@ pub fn init(args: TokenStream, input: TokenStream) -> TokenStream {
     let args2 = args.clone();
     parse_macro_input!(args2 with arg_parser);
     if attrs.name.is_none() || attrs.social_platform.is_none() || attrs.version.is_none() {
-        return Error::new(args.into_iter().next().map_or_else(Span::call_site, |t| t.span()).into(), "No platform, name or version args!").to_compile_error().into();
+        return Error::new(
+            args.into_iter()
+                .next()
+                .map_or_else(Span::call_site, |t| t.span())
+                .into(),
+            "No platform, name or version args!",
+        )
+        .to_compile_error()
+        .into();
     }
     impl_init(attrs, &ast)
 }
