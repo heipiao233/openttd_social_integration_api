@@ -1,6 +1,6 @@
 //! Unofficial Rust binding for OpenTTD Social Integration API.
 //!
-//! Use [`openttd_social_integration_api_macros::init`] for entrypoint.
+//! Use [`init`] for entrypoint.
 //!
 //! # Examples
 //! ```no_run
@@ -35,7 +35,7 @@
 //!     println!("Joining multiplayer!");
 //! }
 //!
-//! #[openttd_social_integration_api_macros::init(platform = "test", name = "Test Plugin", version = "0.1")]
+//! #[openttd_social_integration_api::init(platform = "test", name = "Test Plugin", version = "0.1")]
 //! pub fn init(info: OpenTTDInfo) -> Result<Option<PluginApi>, ()> {
 //!     println!("Init for OpenTTD {}", info.openttd_version);
 //!     Ok(Some(PluginApi {
@@ -174,6 +174,7 @@ macro_rules! wrapper_some {
 }
 
 /// Internal function. Used by proc macro. Don't use in your code.
+#[doc(hidden)]
 pub unsafe fn call_init<F>(
     init: F,
     info: *const OpenTTD_SocialIntegration_v1_OpenTTDInfo,
