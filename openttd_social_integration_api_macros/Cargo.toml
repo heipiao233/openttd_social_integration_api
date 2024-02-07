@@ -1,6 +1,9 @@
 [package]
 name = "openttd_social_integration_api_macros"
 version = "0.1.0"
+authors = ["Hei Piao"]
+description = "Proc macros for openttd_social_integration_api"
+license = "MIT"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
