@@ -1,7 +1,7 @@
 workspace = { members = ["openttd_social_integration_api_macros"] }
 [package]
 name = "openttd_social_integration_api"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Hei Piao"]
 description = "Unofficial Rust binding for OpenTTD Social Integration API."
 license = "MIT"
